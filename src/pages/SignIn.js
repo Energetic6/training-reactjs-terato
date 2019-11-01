@@ -13,6 +13,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
 import NavBar from "./components/NavBar";
+import API from "../Api";
 
 const cookies = new Cookies();
 
@@ -49,11 +50,10 @@ export class SignIn extends Component {
     this.setState({ validated: true });
 
     let _this = this;
-    axios
-      .post("https://reqres.in/api/login", {
-        email: _this.state.email,
-        password: _this.state.password
-      })
+    API.post("/api/login", {
+      email: _this.state.email,
+      password: _this.state.password
+    })
       .then(function(response) {
         _this.setState({
           isLoading: false,
